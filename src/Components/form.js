@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import {View,Text,StyleSheet,TextInput,TouchableOpacity} from 'react-native';
 
+//componente que solicita o nome e a descrição do novo local a ser cridado
 export default function Form({editable,setEditable,addMarker,newMarker}){
 
     [inCenter,setInCenter] = useState(true);

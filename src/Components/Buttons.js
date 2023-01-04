@@ -4,6 +4,7 @@ import seta from '../Assets/seta.png';
 import lixeira from '../Assets/lixeira.png';
 import { useState } from "react";
 
+//Componente que contem os botões de excluir um marker ou traçar uma rota para os mesmo. 
 export default function Buttons({isVisible,setDestination,localDirection,deleteFunc}){
 
 

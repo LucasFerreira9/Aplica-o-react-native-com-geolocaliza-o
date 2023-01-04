@@ -2,7 +2,7 @@ import React from 'react';
 import {Marker,Callout} from 'react-native-maps';
 import {Text,StyleSheet, ScrollView,StatusBar} from 'react-native';
 
-
+//componente que retorna uma lista de markers com base em um vetor de objetos que representam marcadores
 export default function Markers({markers,showButtons,setLastMarker}){
 
     return markers.map((place,index)=>{

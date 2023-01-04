@@ -9,15 +9,19 @@ import MapViewDirections from 'react-native-maps-directions';
 
 export default function Home(){
     
+    //Armazena o ponto de destino da rota
     const [localDirection, setLocalDirection] = useState(null);
 
-    const KEY = 'AIzaSyDpv2fuLdLd8gvE6ng9D5xPPzYWUQA6BPY';
+    const KEY = 'minha chave da api do google';
     
+    //Utilizando o hook personalizado que armazena a localização do usuário(caso seja permitido)
     const {coords,errorMsg} = useLocation();
  
+    //Armazena um array de marcadores.
     const [marcadores,setMarcadores] = useReducer((state,element)=>{
       let new_markers = [...state];
 
+      //verifica se a operação deve ser de excluir ou adicionar um novo marcador
       if(element.isAdd){
         new_markers.push(element.place);
         return new_markers;
@@ -31,8 +35,9 @@ export default function Home(){
 
     },[]);
 
-    const [form,showForm] = useState(false);
-    const [buttons,showButtons] = useState(false);
+    //Estado do formulário de entrada e dos botões de opções(visível ou não)
+    const [form,showForm] = useState(false); //Aparece ao clicar em um local qualquer do mapa, solicitando informações para criar um novo marcador
+    const [buttons,showButtons] = useState(false); //Aparece ao clicar em um marcador qualquer. 
 
     //Coordenadas do ultimo ponto clicado
     const [lastClicked,setClicked] = useState(null);
@@ -51,6 +56,7 @@ export default function Home(){
            showsUserLocation={true}		
            showsMyLocationButton={false} 
            toolbarEnabled={false}	
+           //O click no mapa mostra o formulário de entrada e armazena a coordenada do local. 
            onPress = {(event)=>{
                 setClicked({
                   latitude: event.nativeEvent.coordinate.latitude,
@@ -59,12 +65,15 @@ export default function Home(){
                 showForm(!form);
                 showButtons(false);
            }} 
-           onPanDrag = {()=>{showForm(false)}}      
+           //O arrastar do mapa faz o formulário desaparecer. 
+           onPanDrag = {()=>{showForm(false)}}   
+           //Mapa oculpa toda a tela.    
            style={{
              height: '100%',
              width: '100%',
              position: 'absolute',		
            }}	
+           //Região inicial do mapa e os níveis de zoom iniciais.
            initialRegion={{
              ...coords,
              latitudeDelta: 0.195,  	
